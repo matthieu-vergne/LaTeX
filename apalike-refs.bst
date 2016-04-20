@@ -288,6 +288,17 @@ FUNCTION {escape.url.characters}
   str1
 }
 
+INTEGERS { val }
+
+FUNCTION {is.number.character}
+{
+  chr.to.int$
+  'val :=
+  val #47 >
+  val #58 <
+  + #2 =
+}
+
 INTEGERS { nameptr namesleft numnames }
 
 FUNCTION {format.names}
@@ -377,7 +388,11 @@ FUNCTION {format.isbn}
 	split.at.first.space
 	'rem :=
 	'str :=
-	" \href{https://openlibrary.org/search?isbn=" * str * "}{\tt " * str escape.url.characters * "}" *
+	str #1 #1 substring$
+	is.number.character
+	  {" \href{https://openlibrary.org/search?isbn=" * str * "}{\tt " * str escape.url.characters * "}" *}
+	  {" " * str escape.url.characters *}
+	if$
 	rem
       }
       while$

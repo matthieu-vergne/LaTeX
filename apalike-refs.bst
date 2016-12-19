@@ -368,7 +368,7 @@ FUNCTION {format.doi}
 {
   doi empty$
     { "" }
-    { "DOI: \href{http://dx.doi.org/" doi * "}{\tt " * doi escape.url.characters * "}" * }
+    { "DOI: \href{http://dx.doi.org/" doi * "}{\ttfamily " * doi escape.url.characters * "}" * }
   if$
 }
 
@@ -390,7 +390,7 @@ FUNCTION {format.isbn}
 	'str :=
 	str #1 #1 substring$
 	is.number.character
-	  {" \href{https://openlibrary.org/search?isbn=" * str * "}{\tt " * str escape.url.characters * "}" *}
+	  {" \href{https://openlibrary.org/search?isbn=" * str * "}{\ttfamily " * str escape.url.characters * "}" *}
 	  {" " * str escape.url.characters *}
 	if$
 	rem
@@ -417,7 +417,7 @@ FUNCTION {format.issn}
 	'str :=
 	% If you find an open search engine for ISSN, please tell to the author.
 	% To make it a URL, pay attention: there might have a coma, so purify before.
-	" {\tt " * str escape.url.characters * "}" *
+	" {\ttfamily " * str escape.url.characters * "}" *
 	rem
       }
       while$

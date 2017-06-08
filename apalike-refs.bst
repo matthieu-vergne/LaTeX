@@ -368,7 +368,7 @@ FUNCTION {format.doi}
 {
   doi empty$
     { "" }
-    { "DOI: \href{http://dx.doi.org/" doi * "}{\ttfamily " * doi escape.url.characters * "}" * }
+    { "DOI: \href{https://dx.doi.org/" doi * "}{\ttfamily " * doi escape.url.characters * "}" * }
   if$
 }
 

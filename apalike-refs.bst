@@ -68,6 +68,7 @@
 ENTRY
   { address
     author
+    shortauthor
     booktitle
     chapter
     eid
@@ -1052,13 +1053,17 @@ FUNCTION {format.lab.names}
 }
 
 FUNCTION {author.key.label}
-{ author empty$
-    { key empty$
-	{ cite$ #1 #3 substring$ }
-	'key					% apalike uses the whole key
-      if$
-    }
-    { author format.lab.names }
+{ shortauthor empty$
+	{ author empty$
+		{ key empty$
+			{ cite$ #1 #3 substring$ }
+			'key					% apalike uses the whole key
+		  if$
+		}
+		{ author format.lab.names }
+	  if$
+	}
+	{ shortauthor format.lab.names }
   if$
 }
 

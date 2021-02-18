@@ -1,6 +1,6 @@
 % BibTeX `apalike-refs' bibliography style which displays different IDs like DOI, ISBN, ISSN, but also the URL.
 % It uses \href and \url, so be sure to use the package hyperref for it to work.
-% It is based on the `apalike-doi' of Jan Even Ã˜ie Nilsen:
+% It is based on the `apalike-doi' of Jan Even Øie Nilsen:
 % http://web.nersc.no/~even/tex/apalike-doi.bst
 % 
 % MODIFICATIONS:
@@ -416,9 +416,11 @@ FUNCTION {format.issn}
 	split.at.first.space
 	'rem :=
 	'str :=
-	% If you find an open search engine for ISSN, please tell to the author.
-	% To make it a URL, pay attention: there might have a coma, so purify before.
-	" {\ttfamily " * str escape.url.characters * "}" *
+	str #1 #1 substring$
+	is.number.character
+	  {" \href{https://portal.issn.org/resource/ISSN/" * str * "}{\ttfamily " * str escape.url.characters * "}" *}
+	  {" " * str escape.url.characters *}
+	if$
 	rem
       }
       while$

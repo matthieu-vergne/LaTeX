@@ -1,0 +1,36 @@
+%%% Policy-brief two column brief-report style file
+%%% For use with Policy-brief.cls
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Policy-brief}[2019/05/28 v1.1 Policy brief two column brief report style]
+
+%% Set whether the abstract is set into the first column
+\setboolean{shortarticle}{false} 
+% true = set into first column
+% false = spans page width
+
+%% Set colors
+\definecolor{color2}{RGB}{0,0,0} % color
+
+%% Set up the first page footnote/fact box here
+\RequirePackage{float}
+\floatstyle{plain}
+\newfloat{sigstatement}{b!}{sst}
+
+\additionalelement{%
+\afterpage{\begin{sigstatement}
+\sffamily\scriptsize
+\@ifundefined{@authorcontributions}{}{\@authorcontributions}
+\vskip5pt%
+\@ifundefined{@authordeclaration}{}{\@authordeclaration}
+\vskip5pt%
+\@ifundefined{@equalauthors}{}{\@equalauthors}
+\vskip5pt%
+\@ifundefined{@correspondingauthor}{}{\@correspondingauthor}
+\end{sigstatement}}
+}
+\apptocmd{\@maketitle}{%
+\tikz[remember picture,overlay]
+  \node[rotate=90,anchor=south east,text=white,fill=black,font=\sffamily\bfseries,inner xsep=2em,inner ysep=1.5em,text depth=0.5em] at (current page.north east) {\huge{POLICY BRIEF}};
+}
+
+\endinput
